@@ -4,54 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
-  <style>
-    body {
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background:url(./pure-css-snow-animation.webp) ;
-      
-      color: black;
-      text-align: center;
-    }
-    #weather-container {
-      width: 800px;
-      height: 300px;
-      /* border: 2.5px solid crimson; */
-       border: 2.5px solid black;
-       background-color: white;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      border-radius: 10px;
-    }
-    input{
-      border: 1px solid black;
-      /* background-color: rgb(17, 17, 36); */
-      padding-top:10px ;
-      padding-bottom: 10px;
-      font-size: 18px;
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      border-radius: 10px;
-      /* color: crimson; */
-      color: black;
-    }
-    button{
-      /* background: crimson; */
-      color: #fff;
-      background: black;
-      border: 1px solid#fff;
-      padding-top:10px ;
-      padding-bottom: 10px;
-      font-size: 18px;
-      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      border-radius: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="weather-container">
@@ -63,42 +16,6 @@
     <div id="weather-info"></div>
   </div>
 
-  <script>
-    async function getWeather() {
-      const locationInput = document.getElementById('location');
-      const location = locationInput.value;
-
-      if (!location) {
-        alert('Please enter a location.');
-        return;
-      }
-
-      const apiKey = 'API_KEY';
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
-
-      try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        if (response.ok) {
-          displayWeather(data);
-        } else {
-          alert(`Error: ${data.message}`);
-        }
-      } catch (error) {
-        alert('Error fetching weather data.');
-        console.error(error);
-      }
-    }
-
-    function displayWeather(data) {
-      const weatherInfo = document.getElementById('weather-info');
-
-      weatherInfo.innerHTML = `
-        <h2>${data.name}, ${data.sys.country}</h2>
-        <p>${data.weather[0].description}, Temperature: ${data.main.temp} °C, Humidity: ${data.main.humidity}%, Wind Speed: ${data.wind.speed} m/s</p>
-      `;
-    }
-  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
